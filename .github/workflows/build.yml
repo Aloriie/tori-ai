@@ -24,6 +24,10 @@ jobs:
 
       - name: Siapkan Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          accept-android-sdk-licenses: true
+          packages: |
+            platform-tools,platforms;android-35,build-tools;35.0.0
 
       - name: Siapkan Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -43,3 +47,4 @@ jobs:
         with:
           name: TORI-AI-LIVE-APK
           path: extracted/TORI_AI_LIVE_Android_Project/app/build/outputs/apk/debug/app-debug.apk
+
