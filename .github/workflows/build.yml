@@ -12,6 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+
     steps:
       - name: Ambil proyek
         uses: actions/checkout@v4
@@ -22,12 +26,12 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Siapkan Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          accept-android-sdk-licenses: true
-          packages: |
-            platform-tools,platforms;android-35,build-tools;35.0.0
+      - name: Periksa Android SDK
+        run: |
+          echo "Android SDK:"
+          ls "$ANDROID_HOME"
+          echo "Platform:"
+          ls "$ANDROID_HOME/platforms"
 
       - name: Siapkan Gradle
         uses: gradle/actions/setup-gradle@v4
